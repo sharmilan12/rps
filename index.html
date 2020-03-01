@@ -1,0 +1,67 @@
+<script>
+
+let outputDisplay = ''
+
+function computerPlay() {
+    let plays = ['Rock', 'Paper', 'Scissors'];
+    computerOutput = plays[Math.floor(Math.random() * plays.length)];
+    return computerOutput
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == 'Rock' && computerSelection == 'Paper') {
+        outputDisplay = 'You Lose! Paper beats Rock'
+    } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+        outputDisplay = 'You Win! Scissors beats Paper'
+    } else if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+        outputDisplay = 'You Win! Rock beats Scissors'
+    } else if (playerSelection == 'Paper' && computerSelection == 'Scissors') {
+        outputDisplay = 'You Lose! Scissors beats Paper'
+    } else if (playerSelection == 'Scissors' && computerSelection == 'Rock') {
+        outputDisplay = 'You Lose! Rock beats Scissors'
+    } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+        outputDisplay = 'You Win! Paper beats Rock'
+    } else {
+        outputDisplay = 'Draw'
+    }
+
+    return outputDisplay
+
+}
+
+function game() {
+    var i = 0;
+    var playerScore = 0;
+    var computerScore = 0;
+    finalDisplay = '';
+    for (i = 0; i < 5; i++) {
+
+        var playerSelection = prompt('Rock, Paper or Scissors', 'Rock');
+        playerSelection = playerSelection[0].toUpperCase() + playerSelection.substr(1).toLowerCase()
+        computerSelection = computerPlay()
+        playRound(playerSelection, computerSelection)
+        
+        if (outputDisplay.includes('Win')) {
+            playerScore++
+        } else if (outputDisplay.includes('Lose')) {
+            computerScore++
+        } 
+
+        console.log(outputDisplay + '\n' + 'Your Score:' + playerScore + ' Computer Score:' + computerScore)
+    
+    }
+
+    if (playerScore > computerScore) {
+        finalDisplay = 'Congratulations'
+    } else if (playerScore < computerScore) {
+        finalDisplay = 'Unlucky'
+    } else {
+        finalDisplay = 'Play Again'
+    }
+
+    return finalDisplay + '\n' + 'Your Score:' + playerScore + ' Computer Score:' + computerScore
+}
+
+console.log(game())
+
+</script>
